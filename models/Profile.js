@@ -5,7 +5,7 @@ const Schema = mongoose.Schema;
 const profileSchema = new Schema({
   user: {
     type: Schema.Types.ObjectId,
-    ref: "Users",
+    ref: "User",
   },
   handle: {
     type: String,
@@ -29,24 +29,46 @@ const profileSchema = new Schema({
   },
   gossipExperience: [
     {
-        title: {
-            type: String,
-            required: true,
-        },
-        aboutWhom: {
-           type: String,
-           required: true
-        }
+      title: {
+        type: String,
+        required: true,
+      },
+      aboutWhom: {
+        type: String,
+        required: true,
+      },
+      details: {
+        type: String,
+        required: true,
+      }
     },
   ],
-  caughtGossips: [{
-      title:{
+  caughtGossips: [
+    {
+      title: {
         type: String,
-        required: true
+        required: true,
+      },
+      details: {
+        type: String,
+        required: true,
+      },
     },
-    details:{
-        type:String,
-        required:true
-    }
-  }]
+  ],
+  social: {
+    facebook: {
+      type: String,
+    },
+    twitter: {
+      type: String,
+    },
+    linkedin: {
+      type: String,
+    },
+    instagram: {
+      type: String,
+    },
+  },
 });
+
+module.exports = Profile = mongoose.model('Profile',profileSchema);
