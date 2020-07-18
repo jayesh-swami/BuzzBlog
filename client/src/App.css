@@ -37,6 +37,12 @@
     color: #eae7d9;
 	box-shadow: 0px 0px 10px 0px #eae7d9;
 }
+.is-invalid{
+    box-shadow: 0px 0px 10px 0px black;
+}
+.invalid-feedback{
+    color: #eae7d9;
+}
 .form-label-text{
     font-size: large;
 }
