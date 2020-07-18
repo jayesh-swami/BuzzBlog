@@ -8,19 +8,22 @@
     border-radius: 10px;
 }
 .form-button{
-    all: unset;
-	box-shadow: 0px 1px 1.5px -2px #eae7d9;
+    color: #eae7d9;
+    background: transparent;
+	box-shadow: 0px 0px 2.5px 0px #eae7d9;
 }
 .form-button:active{
-	all: unset;
-	box-shadow: 0px 0px 5px -1.5px #eae7d9;
+    color: #eae7d9;
+    background: transparent;
+	box-shadow: 0px 0px 7.5px 0px #eae7d9;
 }
 .form-button:hover{
-	box-shadow: 0px 1px 3px -1px #eae7d9;
+    color: #eae7d9;
+	box-shadow: 0px 0px 7.5px 0px #eae7d9;
 }
 .form-input-text{
     background: transparent;
-    box-shadow: 1px 1px 1.5px -1px #eae7d9;
+    box-shadow: 0px 0px 1.5px 0px #eae7d9;
     border: none;
     color: #eae7d9;
 	margin-left: 0;
@@ -30,11 +33,9 @@
 	opacity: 0.5;
 }
 .form-input-text:focus{
-    all: unset;
-    padding: initial;
-    margin: initial;
+    background: transparent;
     color: #eae7d9;
-	box-shadow: 1px 1px 1.5px -0.5px #eae7d9;
+	box-shadow: 0px 0px 10px 0px #eae7d9;
 }
 .form-label-text{
     font-size: large;
