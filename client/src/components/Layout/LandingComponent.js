@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 class Landing extends Component {
     render() {
@@ -11,8 +12,8 @@ class Landing extends Component {
                 juiciest, hottest and the spiciest gossip of the town. Special
                 access only!
               </p>
-              <a href="" className="btn py-1 btn-outline-dark">Sign Up</a>
-              <a href="" className="btn ml-2 py-1 btn-outline-dark">Login</a>
+              <Link to='/register' className="btn py-1 btn-outline-dark">Sign Up</Link>
+              <Link to='/login' className="btn ml-2 py-1 btn-outline-dark">Login</Link>
             </div>
           </div>
         );

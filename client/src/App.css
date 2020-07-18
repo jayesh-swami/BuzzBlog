@@ -7,3 +7,35 @@
 .rounded-border-10{
     border-radius: 10px;
 }
+.form-button{
+    all: unset;
+	box-shadow: 0px 1px 1.5px -2px #eae7d9;
+}
+.form-button:active{
+	all: unset;
+	box-shadow: 0px 0px 5px -1.5px #eae7d9;
+}
+.form-button:hover{
+	box-shadow: 0px 1px 3px -1px #eae7d9;
+}
+.form-input-text{
+    background: transparent;
+    box-shadow: 1px 1px 1.5px -1px #eae7d9;
+    border: none;
+    color: #eae7d9;
+	margin-left: 0;
+}
+.form-input-text::placeholder{
+	color: #eae7d9;
+	opacity: 0.5;
+}
+.form-input-text:focus{
+    all: unset;
+    padding: initial;
+    margin: initial;
+    color: #eae7d9;
+	box-shadow: 1px 1px 1.5px -0.5px #eae7d9;
+}
+.form-label-text{
+    font-size: large;
+}
