@@ -6,6 +6,7 @@ import { setTitle } from "../../redux/actions/titleActions";
 import Spinner from '../common/SpinnerComponent';
 import isEmpty from '../../utils/is-empty';
 import { Link } from 'react-router-dom';
+import ProfileActions from '../profile/ProfileActionsComponent';
 
 class Dashboard extends Component {
 
@@ -29,7 +30,33 @@ class Dashboard extends Component {
             
             // Check if profile is empty
             if(!isEmpty(profile)){
-                dashContent = <h4>DISPLAY PROFILE</h4>;
+                // Display User's Profile
+                dashContent = (
+                    <React.Fragment>
+                        <div className="modal" role="dialog" id="accountDeleteModal">
+                            <div className="modal-dialog" role="document">
+                                <div className="modal-content bg-red is-invalid">
+                                    <div className="modal-header">
+                                        <h5 className="modal-title">Did you just try to delete your account?</h5>
+                                        <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div className="modal-body">
+                                        <p>You should know. There is no getting out of this.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <h4 className="display-4 mb-4">Welcome <Link to={`/profile/${profile.handle}`}>{profile.handle}</Link></h4>
+                        <ProfileActions />
+                        {/* TODO GOSS DEETS */}
+                        <button className="mt-5 btn form-button is-invalid" type="button" data-toggle="modal" data-target="#accountDeleteModal">
+                            Delete Account
+                        </button>
+                    </React.Fragment>
+                );
+
             }else{
 
                 // User has no profile
@@ -52,7 +79,7 @@ class Dashboard extends Component {
         }
 
         return (
-            <div className="container mt-3">
+            <div className="container mt-3 text-cream">
                 <div className="row">
                     <div className="col">
                         {dashContent}

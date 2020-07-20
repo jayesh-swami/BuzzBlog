@@ -83,8 +83,10 @@ router.post('/',passport.authenticate('jwt',{session:false}), (req,res) => {
 
       // Updating the profile
 
+      console.log('updating the profile');
+
       Profile.findOneAndUpdate({ user:req.user.id }, { $set: profileFields }, { new: true })
-      .then(profile => res.status(200).json(profile));
+      .then(profile => {console.log(profile);res.status(200).json(profile)});
 
     }else{
 

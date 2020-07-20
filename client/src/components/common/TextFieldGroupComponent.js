@@ -29,8 +29,8 @@ const TextFieldGroup = (props) => {
           placeholder={placeholder}
           disabled={disabled}
         />
-        {error && <div className="invalid-feedback">{error}</div>}
-        {info && <div className="text-field-info">{info}</div>}
+        {error && <div className="invalid-feedback text-left ml-1">{error}</div>}
+        {info && <div className="text-field-info text-left ml-1">{info}</div>}
       </div>
     );
 }

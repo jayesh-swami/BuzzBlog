@@ -22,8 +22,8 @@ class Landing extends Component {
               juiciest, hottest and the spiciest gossip of the town. Special
               access only!
             </p>
-            <Link to='/register' className="btn py-1 btn-outline-dark">Sign Up</Link>
-            <Link to='/login' className="btn ml-2 py-1 btn-outline-dark">Login</Link>
+            <Link to='/register' className="btn py-1 btn-dark">Sign Up</Link>
+            <Link to='/login' className="btn ml-2 py-1 btn-dark">Login</Link>
           </div>
         </div>
       );

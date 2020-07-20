@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import TextFieldGroup from '../common/TextFieldGroupComponent';
@@ -7,11 +7,11 @@ import TextArea from '../common/TextAreaComponent';
 import InputGroup from '../common/InputGroupComponent';
 import { setTitle } from '../../redux/actions/titleActions';
 import { withRouter } from 'react-router-dom';
-import { createUserProfile } from '../../redux/actions/profileActions';
+import { createUserProfile, getUserProfile } from '../../redux/actions/profileActions';
 
-class CreateProfile extends Component {
+class EditProfile extends Component {
     
-    constructor(props){
+    constructor(props) {
         super(props);
 
         this.state = {
@@ -32,21 +32,40 @@ class CreateProfile extends Component {
         this.toggleSocial = this.toggleSocial.bind(this);
     }
 
-    componentDidMount(){
-        this.props.setTitle('Create Profile');
+    componentDidMount() {
+        this.props.setTitle('Edit Profile');
+
+        // getting the profile values
+        this.props.getUserProfile();
     }
     onChange(event) {
         this.setState({ [event.target.name]: event.target.value });
     }
-    componentWillReceiveProps(nextProps){
-        if(nextProps.errors){
-            this.setState({errors: nextProps.errors});
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.errors) {
+            this.setState({ errors: nextProps.errors });
+        }
+        if (nextProps.profile.profile && !nextProps.profile.loading){
+
+            // setting current state to user's profile
+            const userProfile = nextProps.profile.profile;
+            this.setState({
+
+                handle: userProfile.handle,
+                mostHatedPerson: userProfile.mostHatedPerson,
+                feeling: userProfile.feeling,
+                bio: userProfile.bio ? userProfile.bio : '',
+                facebook: userProfile.facebook ? userProfile.facebook : '',
+                instagram: userProfile.instagram ? userProfile.instagram : '',
+                twitter: userProfile.twitter ? userProfile.twitter : '',
+                linkedin: userProfile.linkedin ? userProfile.linkedin : '',
+                skills: userProfile.skills.reduce((fin, curr) => { return `${fin},${curr}` })
+
+            })
         }
     }
     onSubmit(event) {
         event.preventDefault();
-
-        console.log('yeah');
 
         // Create a new profile
         const newProfile = {
@@ -57,11 +76,12 @@ class CreateProfile extends Component {
             facebook: this.state.facebook,
             instagram: this.state.instagram,
             linkedin: this.state.linkedin,
-            twitter: this.state.twitter
+            twitter: this.state.twitter,
+            skills: this.state.skills
         }
-        this.props.createUserProfile(newProfile,this.props.history);
+        this.props.createUserProfile(newProfile, this.props.history);
     }
-    toggleSocial(event){
+    toggleSocial(event) {
         this.setState({ displaySocialInputs: !this.state.displaySocialInputs });
     }
 
@@ -73,7 +93,7 @@ class CreateProfile extends Component {
             <div className="container mt-4 mb-5 text-center text-cream">
                 <div className="row">
                     <div className="col-md-6 mx-auto">
-                        <h1 className="display-4 mb-4">Enter Details</h1>
+                        <h1 className="display-4 mb-4">Edit Profile</h1>
                         <form onSubmit={this.onSubmit}>
                             <TextFieldGroup name="handle" placeholder="Enter a unique goss handle <3."
                                 value={this.state.handle} onChange={this.onChange}
@@ -85,8 +105,8 @@ class CreateProfile extends Component {
                                 value={this.state.feeling} onChange={this.onChange}
                                 error={errors.feeling} type="text" />
                             <TextFieldGroup name="skills" placeholder="Skills : stalking,blazing ..."
-                                value={this.state.feeling} onChange={this.onChange}
-                                error={errors.feeling} type="text" info="Enter as comma separated values" />
+                                value={this.state.skills} onChange={this.onChange}
+                                error={errors.skills} type="text" info="Enter as comma separated values" />
                             <TextArea name="bio" placeholder="Tell us about yourself!"
                                 value={this.state.bio} onChange={this.onChange}
                                 error={errors.bio} />
@@ -95,10 +115,10 @@ class CreateProfile extends Component {
                                 <button type="button" className="btn btn-block form-button btn-sm" onClick={this.toggleSocial}>
                                     Enter Social Accounts
                                 </button>
-                                <p className={classnames("text-field-info text-left my-0 py-0 mt-1 ml-1",{
-                                        "d-none": this.state.displaySocialInputs
-                                    })}>*Optional</p>
-                                <div className={classnames("mt-3",{
+                                <p className={classnames("text-field-info text-left my-0 py-0 mt-1 ml-1", {
+                                    "d-none": this.state.displaySocialInputs
+                                })}>*Optional</p>
+                                <div className={classnames("mt-3", {
                                     "d-none": !this.state.displaySocialInputs
                                 })}>
                                     <InputGroup name="instagram" placeholder="Enter your Instagram id"
@@ -123,11 +143,12 @@ class CreateProfile extends Component {
     }
 }
 
-CreateProfile.propTypes = {
+EditProfile.propTypes = {
     profile: PropTypes.object.isRequired,
     errors: PropTypes.object.isRequired,
     setTitle: PropTypes.func.isRequired,
-    createUserProfile: PropTypes.func.isRequired
+    createUserProfile: PropTypes.func.isRequired,
+    getUserProfile: PropTypes.func.isRequired
 }
 
 const mapStateToProps = (state) => ({
@@ -135,4 +156,4 @@ const mapStateToProps = (state) => ({
     errors: state.errors
 })
 
-export default connect(mapStateToProps,{setTitle, createUserProfile})(withRouter(CreateProfile));
+export default connect(mapStateToProps, { setTitle, createUserProfile, getUserProfile })(withRouter(EditProfile));

@@ -29,6 +29,11 @@ class Header extends Component {
             </Link>
           </li>
           <li className="nav-item">
+            <Link className="nav-link" to="/dashboard">
+              Dashboard
+            </Link>
+          </li>
+          <li className="nav-item">
             <a
               className="nav-link"
               onClick={this.onLogoutClick.bind(this)}

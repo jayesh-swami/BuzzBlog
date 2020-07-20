@@ -18,11 +18,11 @@ module.exports = function validateProfileInput(data) {
     }
 
     // mostHatedPerson Field Validation
-    if (validator.isEmpty(data.mostHatedPerson)) {
-        err.mostHatedPerson = "Most hated person field required.";
-    }
     if (!validator.isLength(data.handle, { min: 2, max: 30 })) {
       err.mostHatedPerson = "Most hated person's name should be between 2 and 30 characters.";
+    }
+    if (validator.isEmpty(data.mostHatedPerson)) {
+        err.mostHatedPerson = "Most hated person field required.";
     }
 
     // feeling Field Validation

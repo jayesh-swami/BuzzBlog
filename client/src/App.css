@@ -1,6 +1,9 @@
 .bg-cream{
     background-color: #eae7d9;
 }
+.bg-red{
+    background-color: #cf4647;
+}
 .text-cream{
     color: #eae7d9;
 }
@@ -55,4 +58,10 @@
 }
 .bg-transparent{
     background-color: transparent;
+}
+a:link{
+    color: #eae7d9;
+}
+a:visited{
+  color: #eae7d9;
 }

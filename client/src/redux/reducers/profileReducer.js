@@ -13,7 +13,7 @@ export default function (state = initialState,action){
         case GET_USER_PROFILE:
             return { ...state, loading: false, profile: action.payload };
         case PROFILE_LOADING:
-            return { ...state, loading: true };
+            return { ...state, loading: true, profile: null };
         case CLEAR_CURRENT_PROFILE:
             return { ...state, profile: null}
         default:

@@ -18,6 +18,9 @@ import Login from './components/auth/LoginComponent';
 import Register from './components/auth/RegisterComponent';
 import Dashboard from './components/dashboard/DashboardComponent';
 import CreateProfile from './components/profile/CreateProfileComponent';
+import EditProfile from './components/profile/EditProfileComponent';
+import AddExperience from './components/profile/AddExperienceComponent';
+import AddCaughtGoss from './components/profile/AddCaughtGossComponent';
 
 
 // Check for token
@@ -41,7 +44,7 @@ if(localStorage.jwtToken){
     store.dispatch(clearCurrentProfile());
 
     // redirect to login
-    window.location.href('/login');
+    window.location.assign('/login');
 
   }
   
@@ -58,6 +61,9 @@ function App() {
         <Route exact path="/register" component={Register} />
         <PrivateRoute exact path="/dashboard" component={Dashboard}/>
         <PrivateRoute exact path="/create-profile" component={CreateProfile} />
+        <PrivateRoute exact path="/edit-profile" component={EditProfile} />
+        <PrivateRoute exact path="/add-goss-experience" component={AddExperience}/>
+        <PrivateRoute exact path="/add-caught-gossips" component={AddCaughtGoss} />
         <Footer />
       </Router>
     </Provider>
