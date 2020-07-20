@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import classnames from 'classnames';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { loginUser } from '../../redux/actions/authActions';
+import TextFieldGroup from '../common/TextFieldGroupComponent';
+import { setTitle } from "../../redux/actions/titleActions";
 
 class Login extends Component {
 
@@ -18,10 +19,18 @@ class Login extends Component {
         this.onSubmit = this.onSubmit.bind(this);
     }
 
+    componentDidMount(){
+        
+        // If user is already logged in redirect to Gossips page
+        if(this.props.auth.isAuthenticated) this.props.history.push('/gossips');
+        this.props.setTitle('Login');
+        
+    }
+
     componentWillReceiveProps(nextProps) {
 
         if(nextProps.auth.isAuthenticated){
-            this.props.history.push('/dashboard');
+            this.props.history.push('/gossips');
         }
 
         if(nextProps.errors){
@@ -53,20 +62,22 @@ class Login extends Component {
                 <div className="row justify-content-center">
                     <div className="col-md-4 col-lg-4 mt-5">
                         <form className="form-container" onSubmit={this.onSubmit} noValidate>
-                            <div className="form-group">
-                                <input type="email" className={classnames('form-input-text form-control form-control-lg',{
-                                    'is-invalid': errors.email
-                                })}
-                                name="email" value={this.state.email} onChange={this.onChange} placeholder="Email"/>
-                                {errors.email && (<div className="invalid-feedback">{errors.email}</div>)}
-                            </div>
-                            <div className="form-group">
-                                <input type="password" className={classnames('form-input-text form-control form-control-lg',{
-                                    'is-invalid': errors.password
-                                })}
-                                name="password" value={this.state.password} onChange={this.onChange} placeholder="Password"/>
-                                {errors.password && (<div className="invalid-feedback">{errors.password}</div>)}
-                            </div>
+                            <TextFieldGroup
+                            name="email" 
+                            type="email" 
+                            error={errors.email} 
+                            onChange={this.onChange} 
+                            placeholder="Email"
+                            value={this.state.email}
+                            />
+                            <TextFieldGroup
+                            name="password" 
+                            type="password" 
+                            error={errors.password} 
+                            onChange={this.onChange} 
+                            placeholder="Password"
+                            value={this.state.password}
+                            />
                             <button type="submit" className="form-button p-1 btn btn-lg btn-block">
                                 Login
                             </button>
@@ -81,7 +92,8 @@ class Login extends Component {
 Login.propTypes = {
     loginUser: PropTypes.func.isRequired,
     auth: PropTypes.object.isRequired,
-    errors: PropTypes.object.isRequired
+    errors: PropTypes.object.isRequired,
+    setTitle: PropTypes.object.isRequired
 }
 
 const mapStateToProps = (state) => ({
@@ -90,4 +102,4 @@ const mapStateToProps = (state) => ({
 })
 
 
-export default connect(mapStateToProps,{loginUser})((Login));
+export default connect(mapStateToProps,{loginUser,setTitle})((Login));

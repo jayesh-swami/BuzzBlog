@@ -44,7 +44,7 @@ export const loginUser = (loginCreds) => (dispatch) => {
 }
 
 // Logout User
-export const logoutUser = () => dispatch => {
+export const logoutUser = (history) => dispatch => {
 
     // Remove token from local storage
     localStorage.removeItem('jwtToken');
@@ -54,6 +54,12 @@ export const logoutUser = () => dispatch => {
 
     // Set state to null
     dispatch(setCurrentUser({}));
+
+    if(history){
+        
+        // redirect to home
+        history.push("/");
+    }
 
 }
 

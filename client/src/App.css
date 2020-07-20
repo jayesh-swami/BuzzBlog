@@ -46,3 +46,13 @@
 .form-label-text{
     font-size: large;
 }
+.text-field-info{
+    color: #eae7d9;
+    font-size: 12px;
+}
+.select-option{
+    background-color: #cf4647;
+}
+.bg-transparent{
+    background-color: transparent;
+}
