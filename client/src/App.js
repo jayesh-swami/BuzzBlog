@@ -21,6 +21,10 @@ import CreateProfile from './components/profile/CreateProfileComponent';
 import EditProfile from './components/profile/EditProfileComponent';
 import AddExperience from './components/profile/AddExperienceComponent';
 import AddCaughtGoss from './components/profile/AddCaughtGossComponent';
+import Gossipers from './components/profile/GossipersComponent';
+import ProfileDetailComponent from './components/profile/ProfileDetailComponent';
+import GossipsListComponent from './components/gossips/GossipsListComponent';
+import GossipDetailComponent from './components/gossips/GossipDetailComponent';
 
 
 // Check for token
@@ -64,6 +68,10 @@ function App() {
         <PrivateRoute exact path="/edit-profile" component={EditProfile} />
         <PrivateRoute exact path="/add-goss-experience" component={AddExperience}/>
         <PrivateRoute exact path="/add-caught-gossips" component={AddCaughtGoss} />
+        <PrivateRoute exact path="/gossipers" component={Gossipers} />
+        <PrivateRoute exact path="/gossiper/:handle" component={ProfileDetailComponent}/>
+        <PrivateRoute exact path="/gossips" component={GossipsListComponent}/>
+        <PrivateRoute exact path="/gossip/:id" component={GossipDetailComponent}/>
         <Footer />
       </Router>
     </Provider>

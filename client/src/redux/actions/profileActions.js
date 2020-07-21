@@ -88,3 +88,68 @@ export const addCaughtGoss = (caughtgoss, history) => dispatch => {
         }))
 
 }
+
+// Delete a goss Exp
+export const deleteGossExp = (gossExpID, history) => dispatch => {
+
+    axios.delete(`/api/profiles/gossexp/${gossExpID}`)
+        .then(res => {
+            dispatch({
+                type: GET_USER_PROFILE,
+                payload: res.data
+            });
+            history.push('/dashboard');
+        })
+        .catch(err => console.log(err));
+
+}
+
+// Delete a caught goss
+export const deleteCaughtGoss = (caughtGossID, history) => dispatch => {
+
+    axios.delete(`/api/profiles/caughtgoss/${caughtGossID}`)
+        .then(res => {
+            dispatch({
+                type: GET_USER_PROFILE,
+                payload: res.data
+            });
+            history.push('/dashboard');
+        })
+        .catch(err => console.log(err));
+
+}
+
+// Get all profiles and their details
+export const getAllProfiles = () => dispatch => {
+
+    dispatch(setProfileLoading());
+
+    axios.get('/api/profiles/all')
+    .then(res => dispatch({
+        type:GET_PROFILES,
+        payload: res.data
+    }))
+    .catch(err => {
+        dispatch({
+        type: GET_PROFILES,
+        payload: null
+    })})
+
+}
+
+// Get profile by handle
+export const getProfileByHandle = (handle) => dispatch => {
+
+    dispatch(setProfileLoading(true));
+
+    axios.get(`/api/profiles/handle/${handle}`)
+    .then(res => dispatch({
+        type: GET_USER_PROFILE,
+        payload: res.data
+    }))
+    .catch(err => dispatch({
+        type: GET_USER_PROFILE,
+        payload: {}
+    }))
+
+}

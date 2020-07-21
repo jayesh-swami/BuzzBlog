@@ -29,6 +29,11 @@ class Header extends Component {
             </Link>
           </li>
           <li className="nav-item">
+            <Link className="nav-link" to="/gossipers">
+              Gossipers
+            </Link>
+          </li>
+          <li className="nav-item">
             <Link className="nav-link" to="/dashboard">
               Dashboard
             </Link>

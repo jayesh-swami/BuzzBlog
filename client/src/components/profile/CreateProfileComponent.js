@@ -57,7 +57,8 @@ class CreateProfile extends Component {
             facebook: this.state.facebook,
             instagram: this.state.instagram,
             linkedin: this.state.linkedin,
-            twitter: this.state.twitter
+            twitter: this.state.twitter,
+            skills: this.state.skills
         }
         this.props.createUserProfile(newProfile,this.props.history);
     }
@@ -85,8 +86,8 @@ class CreateProfile extends Component {
                                 value={this.state.feeling} onChange={this.onChange}
                                 error={errors.feeling} type="text" />
                             <TextFieldGroup name="skills" placeholder="Skills : stalking,blazing ..."
-                                value={this.state.feeling} onChange={this.onChange}
-                                error={errors.feeling} type="text" info="Enter as comma separated values" />
+                                value={this.state.skills} onChange={this.onChange}
+                                error={errors.skills} type="text" info="Enter as comma separated values" />
                             <TextArea name="bio" placeholder="Tell us about yourself!"
                                 value={this.state.bio} onChange={this.onChange}
                                 error={errors.bio} />

@@ -52,7 +52,7 @@ router.post('/', passport.authenticate('jwt',{ session: false }), (req,res) => {
 router.get('/', passport.authenticate('jwt',{ session: false }), (req,res) => {
 
   Gossips.find()
-    .sort({datetime: -1})
+    .populate('user', ['name', 'avatar'])
     .then(gossips => res.json(gossips))
     .catch(err => res.status(404));
 
@@ -64,6 +64,7 @@ router.get('/', passport.authenticate('jwt',{ session: false }), (req,res) => {
 router.get('/:goss_id', passport.authenticate('jwt',{ session: false }), (req,res) => {
 
   Gossips.findById(req.params.goss_id)
+  .populate('user')
     .then(gossip =>{
 
       if(!gossip){

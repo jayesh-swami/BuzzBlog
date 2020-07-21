@@ -167,7 +167,6 @@ router.get('/all', passport.authenticate('jwt',{session:false}), (req,res) => {
       errors.noProfile = "There are no profiles.";
       res.status(404).json(errors);
     }
-
     res.json(profiles);
   })
   .catch(err => res.status(404).json({profile: "Does not exist."}));

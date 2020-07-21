@@ -4,6 +4,9 @@
 .bg-red{
     background-color: #cf4647;
 }
+.box-shadow-cream{
+    box-shadow: 0px 0px 5px 0px #eae7d9;
+}
 .text-cream{
     color: #eae7d9;
 }
@@ -64,4 +67,18 @@ a:link{
 }
 a:visited{
   color: #eae7d9;
+}
+.profiles-image:hover{
+    opacity: 0.5;
+    background-color: #eae7d9;
+    transition: 0.75s;
+}
+.spice-TS{
+	box-shadow:inset 0px 0px 15px #d92027;
+}
+.spice-S{
+	box-shadow:inset 0px 0px 15px #ff9234;
+}
+.spice-CS{
+	box-shadow:inset 0px 0px 15px #5fdde5;
 }

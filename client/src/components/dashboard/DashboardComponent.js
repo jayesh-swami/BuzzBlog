@@ -1,14 +1,18 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import { getUserProfile } from '../../redux/actions/profileActions';
+import { getUserProfile,deleteCaughtGoss,deleteGossExp } from '../../redux/actions/profileActions';
 import { setTitle } from "../../redux/actions/titleActions";
 import Spinner from '../common/SpinnerComponent';
 import isEmpty from '../../utils/is-empty';
 import { Link } from 'react-router-dom';
 import ProfileActions from '../profile/ProfileActionsComponent';
+import GossExperiences from './GossExperienceComponent';
+import CaughtGoss from './CaughtGossComponent';
 
 class Dashboard extends Component {
+
+    
 
     componentDidMount(){
         this.props.getUserProfile();
@@ -50,8 +54,13 @@ class Dashboard extends Component {
                         </div>
                         <h4 className="display-4 mb-4">Welcome <Link to={`/profile/${profile.handle}`}>{profile.handle}</Link></h4>
                         <ProfileActions />
-                        {/* TODO GOSS DEETS */}
-                        <button className="mt-5 btn form-button is-invalid" type="button" data-toggle="modal" data-target="#accountDeleteModal">
+                        <h4 className="mt-3 mb-0 pb-0">Gossip Experiences</h4>
+                        <hr/>
+                        <GossExperiences gossExperience={profile.gossipExperience}/>
+                        <h4 className="mt-3 mb-0 pb-0">Caught Gossips</h4>
+                        <hr />
+                        <CaughtGoss caughtGoss={profile.caughtGossips}/>
+                        <button className="mt-5 mb-5 btn form-button is-invalid" type="button" data-toggle="modal" data-target="#accountDeleteModal">
                             Delete Account
                         </button>
                     </React.Fragment>
@@ -94,7 +103,9 @@ Dashboard.propTypes = {
     getUserProfile : PropTypes.func.isRequired,
     auth: PropTypes.object.isRequired,
     profile: PropTypes.object.isRequired,
-    setTitle: PropTypes.func.isRequired
+    setTitle: PropTypes.func.isRequired,
+    deleteCaughtGoss: PropTypes.func.isRequired,
+    deleteGossExp: PropTypes.func.isRequired
 }
 
 const mapStateToProps = (state) => ({
@@ -102,4 +113,4 @@ const mapStateToProps = (state) => ({
     auth: state.auth
 })
 
-export default connect(mapStateToProps,{getUserProfile,setTitle})(Dashboard);
+export default connect(mapStateToProps,{getUserProfile,setTitle,deleteCaughtGoss,deleteGossExp})(Dashboard);
