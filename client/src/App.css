@@ -82,3 +82,9 @@ a:visited{
 .spice-CS{
 	box-shadow:inset 0px 0px 15px #5fdde5;
 }
+.x-small-font{
+    font-size: x-small;
+}
+.small-font{
+    font-size: small;
+}

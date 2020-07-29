@@ -53,6 +53,7 @@ router.get('/', passport.authenticate('jwt',{ session: false }), (req,res) => {
 
   Gossips.find()
     .populate('user', ['name', 'avatar'])
+    .sort({datetime:-1})
     .then(gossips => res.json(gossips))
     .catch(err => res.status(404));
 
@@ -65,6 +66,8 @@ router.get('/:goss_id', passport.authenticate('jwt',{ session: false }), (req,re
 
   Gossips.findById(req.params.goss_id)
   .populate('user')
+  .populate('comments.user')
+  .populate('comments.replies.user')
     .then(gossip =>{
 
       if(!gossip){
@@ -88,7 +91,7 @@ router.delete('/:goss_id', passport.authenticate('jwt',{ session: false }), (req
     if(!gossip){
       res.status(404).json({ message: "Does not exist." })
     }
-    if(!( gossip.user === req.user.id)){
+    if(!( gossip.user.toString() === req.user.id.toString())){
       return res.status(403).json({ message: "You can only delete your gossips." });
     }
 

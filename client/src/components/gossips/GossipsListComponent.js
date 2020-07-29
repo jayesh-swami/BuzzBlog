@@ -41,7 +41,6 @@ class GossipsListComponent extends Component {
         if(isLoading){
             return(<Loading/>);
         }else if(!isLoading){
-            console.log(gossips);
             gossips_content = gossips.map(gossip => {
                 return (
                     <div key={gossip._id} className={`bg-cream card col-sm-6 col-md-4 col-lg-3 col-8 px-2 mx-3 mt-4 spice-${gossip.spiceLevel}`}>
@@ -56,6 +55,10 @@ class GossipsListComponent extends Component {
             })
             return (
                 <div className="container mb-5">
+                    <Link to="/create-gossip" className="btn btn-sm form-button position-absolute"
+                    style={{right:"5%",bottom:'5%'}}>
+                        <span className="fa fa-bullhorn"></span>&nbsp;&nbsp;Create Gossip
+                        </Link>
                     <div className="row card-row mt-3 justify-content-around">
                         {gossips_content}
                     </div>

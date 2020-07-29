@@ -25,6 +25,7 @@ import Gossipers from './components/profile/GossipersComponent';
 import ProfileDetailComponent from './components/profile/ProfileDetailComponent';
 import GossipsListComponent from './components/gossips/GossipsListComponent';
 import GossipDetailComponent from './components/gossips/GossipDetailComponent';
+import CreateGossipComponent from './components/gossips/CreateGossipComponent';
 
 
 // Check for token
@@ -72,6 +73,7 @@ function App() {
         <PrivateRoute exact path="/gossiper/:handle" component={ProfileDetailComponent}/>
         <PrivateRoute exact path="/gossips" component={GossipsListComponent}/>
         <PrivateRoute exact path="/gossip/:id" component={GossipDetailComponent}/>
+        <PrivateRoute exact path="/create-gossip" component={CreateGossipComponent}/>
         <Footer />
       </Router>
     </Provider>
