@@ -33,13 +33,12 @@ class GossipsListComponent extends Component {
         
         if(isLoading){
             return(<Loading/>);
-        }else if(!isLoading && !isEmpty(gossips) && auth.user){
+        }else{
 
             const notifCalc = (gossip,i) => {
                 let x = 0;
                 gossip.comments.forEach(comment => {
                     if(new Date(comment.datetime) > new Date(gossip.lastLogins[i].lastLogin)){
-                        console.log('yea');
                         x = x + 1 + comment.replies.length;
                     }else{
                         comment.replies.forEach(reply => {
@@ -69,7 +68,6 @@ class GossipsListComponent extends Component {
                   numNotifs: gossip.comments.length + (gossip.comments.replies ? gossip.comments.reduce((n,x) => {return n + x.replies.length}) : 0)
                 };
             });
-            console.log(lastLoginsforGossips);
             if(!isLoading && gossips && auth.user){
                 gossips_content = gossips.map((gossip,index) => {
                     const notifBadge = (<span className="badge badge-pill position-absolute badge-danger" style={{right:'0px',top:'0px'}}>
