@@ -9,6 +9,7 @@ const Gossips = require('../../models/Gossip');
 // Load Gossip,Comment Validator
 const validateGossipInput = require('../../validation/gossip');
 const validateCommentInput = require('../../validation/comment');
+const e = require("express");
 
 // @route   GET /api/gossips/test
 // @desc    test users route
@@ -38,7 +39,8 @@ router.post('/', passport.authenticate('jwt',{ session: false }), (req,res) => {
     title : req.body.title,
     spiceLevel : req.body.spiceLevel,
     details : req.body.details,
-    user: req.user.id
+    user: req.user.id,
+    image: req.body.image
   });
 
   newGossip.save()
@@ -73,7 +75,22 @@ router.get('/:goss_id', passport.authenticate('jwt',{ session: false }), (req,re
       if(!gossip){
         res.status(404).json({message: "Gossip does not exist."});
       }
-      res.json(gossip);
+      let usersInLastLogins = (gossip.lastLogins.length > 0 ? gossip.lastLogins.map(e => e.user.toString()) : []);
+      let index = usersInLastLogins.indexOf(req.user._id.toString());
+      if(index === -1){
+        gossip.lastLogins.push({user:req.user,lastLogin: Date.now()});
+        gossip
+          .save()
+          .then((gossipss) => {res.json(gossipss)})
+          .catch((err) => console.log(err));
+
+      }else{
+        gossip.lastLogins[index].lastLogin = Date.now();
+        gossip
+          .save()
+          .then((gossip) => res.json(gossip))
+          .catch((err) => res.status(500));
+      }
 
     })
     .catch(err => res.status(404));

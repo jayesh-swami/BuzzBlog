@@ -196,8 +196,12 @@ class GossipDetailComponent extends Component {
                     <div className="row">
                         <div className="col-md-10 col-12">
                             <div className={`card bg-transparent `}>
-                                <div className="card-body">
+                                <div className="card-header">
                                     <h5 className="card-title display-4">{gossip.title}</h5>
+                                </div>
+                                {gossip.image ? (<img className="card-img-top px-2 mt-2 rounded-border-10" style={{maxHeight:'450px'}} width="100%" src={gossip.image} alt="Card image cap"/>) : 
+                                (<img className="card-img-top px-2 mt-2 rounded-border-10" style={{maxHeight:'450px'}} src={`https://picsum.photos/id/${(Math.ceil(Math.random()*500))}/200/300`} alt="Card image cap"/>)}
+                                <div className="card-body">
                                     <p className="card-text">{gossip.details}</p>
                                     <h6 className="gossip-gossiper">- {gossip.user.name}</h6>
                                     <p className="gossip-time small-font">

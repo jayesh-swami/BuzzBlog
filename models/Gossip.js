@@ -11,17 +11,33 @@ const gossipSchema = new Schema({
     type: String,
     required: true,
   },
-  spiceLevel:{
+  spiceLevel: {
     type: String,
-    default: 'S',
+    default: "S",
     max: 2,
   },
-  likes: [
+  image: {
+    type: String,
+    default: null,
+  },
+  lastLogins: [
     {
-        user: {
+      user: {
         type: Schema.Types.ObjectId,
         ref: "User",
-        }
+      },
+      lastLogin: {
+        type: Date,
+        default: null
+      }
+    },
+  ],
+  likes: [
+    {
+      user: {
+        type: Schema.Types.ObjectId,
+        ref: "User",
+      },
     },
   ],
   details: {

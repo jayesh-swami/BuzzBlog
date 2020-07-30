@@ -37,10 +37,10 @@ export const loginUser = (loginCreds) => (dispatch) => {
         dispatch(setCurrentUser(user));
 
     })
-    .catch(err => dispatch({
+    .catch(err => {console.log(err);dispatch({
         type: GET_ERRORS,
         payload: err.response.data
-    }))
+    })})
 }
 
 // Logout User

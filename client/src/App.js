@@ -59,23 +59,23 @@ function App() {
 
   return (
     <Provider store={ store }>
-      <Router>
-        <Header />
-        <Route exact path="/" component={Landing} />
-        <Route exact path="/login" component={Login} />
-        <Route exact path="/register" component={Register} />
-        <PrivateRoute exact path="/dashboard" component={Dashboard}/>
-        <PrivateRoute exact path="/create-profile" component={CreateProfile} />
-        <PrivateRoute exact path="/edit-profile" component={EditProfile} />
-        <PrivateRoute exact path="/add-goss-experience" component={AddExperience}/>
-        <PrivateRoute exact path="/add-caught-gossips" component={AddCaughtGoss} />
-        <PrivateRoute exact path="/gossipers" component={Gossipers} />
-        <PrivateRoute exact path="/gossiper/:handle" component={ProfileDetailComponent}/>
-        <PrivateRoute exact path="/gossips" component={GossipsListComponent}/>
-        <PrivateRoute exact path="/gossip/:id" component={GossipDetailComponent}/>
-        <PrivateRoute exact path="/create-gossip" component={CreateGossipComponent}/>
-        <Footer />
-      </Router>
+        <Router>
+          <Header />
+          <Route exact path="/" component={Landing} />
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/register" component={Register} />
+          <PrivateRoute exact path="/dashboard" component={Dashboard}/>
+          <PrivateRoute exact path="/create-profile" component={CreateProfile} />
+          <PrivateRoute exact path="/edit-profile" component={EditProfile} />
+          <PrivateRoute exact path="/add-goss-experience" component={AddExperience}/>
+          <PrivateRoute exact path="/add-caught-gossips" component={AddCaughtGoss} />
+          <PrivateRoute exact path="/gossipers" component={Gossipers} />
+          <PrivateRoute exact path="/gossiper/:handle" component={ProfileDetailComponent}/>
+          <PrivateRoute exact path="/gossips" component={GossipsListComponent}/>
+          <PrivateRoute exact path="/gossip/:id" component={GossipDetailComponent}/>
+          <PrivateRoute exact path="/create-gossip" component={CreateGossipComponent}/>
+          <Footer />
+        </Router>
     </Provider>
   );
 }

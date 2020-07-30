@@ -7,10 +7,11 @@ export const getGossips = () => dispatch => {
     dispatch(setGossipLoading());
 
     Axios.get('/api/gossips')
-    .then(res => dispatch({
+    .then(res => {
+        dispatch({
         type: GET_GOSSIPS,
         payload: res.data
-    }))
+    })})
     .catch(err => dispatch({
         type: GET_GOSSIPS,
         payload: null
@@ -43,14 +44,15 @@ export const getGossipbyID = (id) => dispatch => {
 // Create a new gossip
 export const createGossip = (newGoss,history) => dispatch => {
 
-    Axios.post('/api/gossips',newGoss)
-    .then(res => {
-        history.push('/gossips');
-    })
-    .catch(err => dispatch({
-        type: GET_ERRORS,
-        payload: err.response.data
-    }));
+
+        Axios.post('/api/gossips',newGoss)
+        .then(res => {
+            history.push('/gossips');
+        })
+        .catch(err => dispatch({
+            type: GET_ERRORS,
+            payload: err.response.data
+        }));
 
 }
 
