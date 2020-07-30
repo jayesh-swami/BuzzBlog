@@ -4,6 +4,7 @@ const gravatar = require('gravatar');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const secretOrKey = require('../../config/keys').secretOrKey;
+const whitelistedEmails = require('../../config/keys').whitelistedEmails;
 const passport = require('passport');
 
 // Load Input validation
@@ -15,7 +16,7 @@ const User = require('../../models/User');
 
 // Whitelisted email that are allowed to register
 // Private Website :)
-const whiteListEmails = ['jayeshjayant99@gmail.com','sukritim1313@gmail.com','chetna.bitsgoa@gmail.com','parikhshaili99@gmail.com'];
+const whiteListEmails = whitelistedEmails;
 
 // @route   GET /api/users/test
 // @desc    test users route

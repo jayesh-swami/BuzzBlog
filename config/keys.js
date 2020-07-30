@@ -1,4 +1,5 @@
-module.exports = {
-  mongoURL: "mongodb+srv://gossBlog:gossBlog1!@cluster0.kq40w.gcp.mongodb.net/gossblog?retryWrites=true&w=majority",
-  secretOrKey: '7g7&^Gd7^G&dgashgdHGSdGId7s8da7!'
-};
+if(process.env.NODE_ENV === 'production'){
+  module.exports = require('./keys_prod');
+}else{
+  module.exports = require('./keys_dev');
+}
