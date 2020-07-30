@@ -78,8 +78,8 @@ class GossipsListComponent extends Component {
                         <div className="card-header">
                             <h4 className="card-title">{gossip.title}</h4>
                         </div>
-                        {gossip.image ? (<img className="card-img-top px-2 mt-2 rounded-border-10" style={{maxHeight:'150px'}} width="100%" src={gossip.image} alt="Card image cap"/>) : 
-                        (<img className="card-img-top px-2 mt-2 rounded-border-10" style={{maxHeight:'150px'}} src={`https://picsum.photos/id/${(Math.ceil(Math.random()*100))+100}/200/300`} alt="Card image cap"/>)}
+                        {gossip.image ? (<img className="card-img-top px-2 mt-2 rounded-border-10" style={{height:'200px',objectFit:'cover',objectPosition:'0 0'}} src={gossip.image} alt="Card image cap"/>) : 
+                        (<img className="card-img-top px-2 mt-2 rounded-border-10" style={{height:'200px',objectFit:'cover',objectPosition:'0 0'}} src={`https://picsum.photos/id/${(Math.ceil(Math.random()*100))+100}/400/600`} alt="Card image cap"/>)}
                         <div className="card-body">
                             <h6 className="card-subtitle mb-2 text-muted">By - {gossip.user.name}</h6>
                             <p className="card-text">{gossip.details.substring(0, 100)}...</p>
